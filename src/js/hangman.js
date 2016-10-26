@@ -13,6 +13,19 @@ function Game (options) {
   this.alphabet = ALPHABET;
 };
 
+Game.prototype.renderWord = function () {
+  var that = this;
+  console.log(that);
+  var wordHTML = this.word.split("").map(function (letter) {
+    if (that.guesses.includes(letter)) {
+      return `<span class="word-letter">${letter}</span>`;
+    } else {
+      return `<span class="word-letter">_</span>`;
+    }
+  });
+  return wordHTML.join("");
+};
+
 Game.prototype.renderAlphabet = function () {
   var alphabetHTML = this.alphabet.map(function (letter) {
     return `<span class="letter">${letter.toUpperCase()}</span>`;
@@ -21,6 +34,7 @@ Game.prototype.renderAlphabet = function () {
 };
 
 Game.prototype.makeGuess = function (guess) {
+  guess = guess.toLowerCase();
   this.guesses.push(guess);
   if (!this.word.includes(guess)) {
     this.turnsLeft -= 1;
