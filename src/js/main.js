@@ -21,6 +21,11 @@ function takeTurn (event) {
 
   game.makeGuess(letter);
   renderGame();
+
+  if (game.isOver()) {
+    $(".container").append("<h1>Game over!</h1>");
+  }
+
 };
 
 renderGame();

@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 var ALPHABET = [
   'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
   'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
@@ -9,8 +11,19 @@ function Game (options) {
   this.turnsLeft = options.turnsLeft || 6;
   this.dictionary = options.dictionary;
   this.guesses = [];
-  this.word = this.dictionary.getWord();
+  this.word = this.dictionary.getWord().toLowerCase();
   this.alphabet = ALPHABET;
+};
+
+Game.prototype.isOver = function () {
+  var that = this;
+  var lose = this.turnsLeft === 0;
+  var letters = this.word.split("");
+  var win = _.every(letters, function (letter) {
+    return that.guesses.includes(letter);
+  });
+
+  return lose || win;
 };
 
 Game.prototype.renderWord = function () {
