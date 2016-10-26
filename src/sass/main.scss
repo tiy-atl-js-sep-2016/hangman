@@ -1,11 +1,19 @@
 .container {
+    width: 500px;
     margin: 30px auto;
 }
 
 .letter {
     border: 1px solid lightgrey;
+    font-size: 28px;
+    padding: 5px;
 }
 
-.red {
-    color: red;
+.word {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.word-letter {
+    margin: 5px;
 }
