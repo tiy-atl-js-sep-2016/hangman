@@ -32,7 +32,7 @@ Game.prototype.renderWord = function () {
     } else {
       return `<span class="word-letter">_</span>`;
     }
-  }.bind(this));
+  }, this);
   return wordHTML.join("");
 };
 
@@ -43,7 +43,7 @@ Game.prototype.renderAlphabet = function () {
     } else {
       return `<span class="letter">${letter.toUpperCase()}</span>`;
     }
-  }.bind(this));
+  }, this);
   return alphabetHTML.join("");
 };
 
