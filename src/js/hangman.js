@@ -16,39 +16,42 @@ function Game (options) {
 };
 
 Game.prototype.isOver = function () {
-  var that = this;
   var lose = this.turnsLeft === 0;
   var letters = this.word.split("");
   var win = _.every(letters, function (letter) {
-    return that.guesses.includes(letter);
-  });
+    return this.guesses.includes(letter);
+  }.bind(this));
 
   return lose || win;
 };
 
 Game.prototype.renderWord = function () {
-  var that = this;
-  console.log(that);
   var wordHTML = this.word.split("").map(function (letter) {
-    if (that.guesses.includes(letter)) {
+    if (this.guesses.includes(letter)) {
       return `<span class="word-letter">${letter}</span>`;
     } else {
       return `<span class="word-letter">_</span>`;
     }
-  });
+  }.bind(this));
   return wordHTML.join("");
 };
 
 Game.prototype.renderAlphabet = function () {
   var alphabetHTML = this.alphabet.map(function (letter) {
-    return `<span class="letter">${letter.toUpperCase()}</span>`;
-  });
+    if (this.guesses.includes(letter)) {
+      return `<span class="letter guessed">${letter.toUpperCase()}</span>`;
+    } else {
+      return `<span class="letter">${letter.toUpperCase()}</span>`;
+    }
+  }.bind(this));
   return alphabetHTML.join("");
 };
 
 Game.prototype.makeGuess = function (guess) {
   guess = guess.toLowerCase();
-  this.guesses.push(guess);
+  if (!this.guesses.includes(guess)) {
+    this.guesses.push(guess);
+  }
   if (!this.word.includes(guess)) {
     this.turnsLeft -= 1;
   }
