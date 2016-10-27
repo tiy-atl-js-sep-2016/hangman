@@ -16,6 +16,7 @@ function renderGame () {
 }
 
 function takeTurn (event) {
+  console.log(game);
   var target = $(event.target);
   var letter = target.html();
 
