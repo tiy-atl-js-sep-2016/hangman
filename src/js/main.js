@@ -1,8 +1,8 @@
 import $ from 'jquery';
 import _ from 'lodash';
 
-import { Game } from "./hangman";
-import { ArrayDictionary as Dictionary } from "./dictionary";
+import { Game } from "./models/hangman";
+import { ArrayDictionary as Dictionary } from "./models/dictionary";
 
 var dictionary = new Dictionary();
 var game = new Game({ dictionary: dictionary });
