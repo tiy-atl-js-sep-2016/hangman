@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 import { gameTemplate } from "../views/game";
 
 class AppController {
@@ -13,11 +15,11 @@ class AppController {
   render () {
     var html = gameTemplate(this.game);
     this.display.html(html);
-    $(".alphabet").click(this.takeTurn);
+    $(".alphabet").click(this.takeTurn.bind(this));
   }
 
   takeTurn (event) {
-    console.log(this.game);
+    console.log(this);
     var target = $(event.target);
     var letter = target.html();
 

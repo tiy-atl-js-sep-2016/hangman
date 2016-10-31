@@ -17,8 +17,8 @@ class ArrayDictionary {
   }
 }
 
-var dictionary = new ArrayDictionary();
-console.log(dictionary.getWord());
+// var dictionary = new ArrayDictionary();
+// console.log(dictionary.getWord());
 
 // function ArrayDictionary (words) {
 //   this.words = words || BASIC_DICTIONARY;
